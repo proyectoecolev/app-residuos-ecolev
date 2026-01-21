@@ -1,41 +1,38 @@
 export default function Home() {
   return (
-    <div style={{ fontFamily: "Arial, sans-serif", padding: 20, maxWidth: 720, margin: "0 auto" }}>
-      <h1 style={{ marginBottom: 4 }}>App Residuos · Eco Lev</h1>
-      <p style={{ marginTop: 0, color: "#555" }}>
-        Gestión interna de socios y entregas de compost
+    <div style={{
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      fontFamily: "Arial, sans-serif",
+      backgroundColor: "#f4f7f5",
+      textAlign: "center",
+      padding: "20px"
+    }}>
+      <h1 style={{ color: "#2f6b4f", fontSize: "2.5rem" }}>
+        Proyecto Eco Lev
+      </h1>
+
+      <p style={{ maxWidth: "500px", fontSize: "1.1rem", marginTop: "20px" }}>
+        App interna para la gestión de socios y entregas de compost.
       </p>
 
-      <div style={{ display: "grid", gap: 12, marginTop: 20 }}>
-        <a href="/socios" style={cardStyle}>
-          <strong>Socios</strong>
-          <div style={{ color: "#666", marginTop: 6 }}>Ver / cargar socios</div>
-        </a>
-
-        <a href="/entregas" style={cardStyle}>
-          <strong>Entregas</strong>
-          <div style={{ color: "#666", marginTop: 6 }}>Cargar una entrega</div>
-        </a>
-
-        <a href="/tablero" style={cardStyle}>
-          <strong>Tablero</strong>
-          <div style={{ color: "#666", marginTop: 6 }}>Próximas entregas y alertas</div>
-        </a>
-      </div>
-
-      <div style={{ marginTop: 30, fontSize: 12, color: "#777" }}>
-        Primera pantalla (provisoria). Después la dejamos linda.
-      </div>
+      <button
+        style={{
+          marginTop: "30px",
+          padding: "12px 24px",
+          fontSize: "1rem",
+          backgroundColor: "#2f6b4f",
+          color: "white",
+          border: "none",
+          borderRadius: "6px",
+          cursor: "pointer"
+        }}
+      >
+        Ingresar
+      </button>
     </div>
   );
 }
-
-const cardStyle = {
-  display: "block",
-  padding: 14,
-  border: "1px solid #ddd",
-  borderRadius: 10,
-  textDecoration: "none",
-  color: "#111",
-  background: "#fafafa"
-};
