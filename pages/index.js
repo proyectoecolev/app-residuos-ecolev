@@ -32,7 +32,22 @@ export default function Home() {
         }}
       >
         Ingresar
-      </button>
+      </<a
+  href="/dashboard"
+  style={{
+    display: "inline-block",
+    marginTop: "30px",
+    padding: "12px 24px",
+    backgroundColor: "#2f6b4f",
+    color: "white",
+    textDecoration: "none",
+    borderRadius: "8px",
+    fontWeight: "bold",
+  }}
+>
+  Ingresar
+</a>
+>
     </div>
   );
 }
