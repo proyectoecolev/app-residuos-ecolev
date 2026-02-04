@@ -19,20 +19,7 @@ export default function Home() {
         App interna para la gestión de socios y entregas de compost.
       </p>
 
-      <button
-        style={{
-          marginTop: "30px",
-          padding: "12px 24px",
-          fontSize: "1rem",
-          backgroundColor: "#2f6b4f",
-          color: "white",
-          border: "none",
-          borderRadius: "6px",
-          cursor: "pointer"
-        }}
-      >
-        Ingresar
-      </<a
+    <a
   href="/dashboard"
   style={{
     display: "inline-block",
@@ -47,6 +34,7 @@ export default function Home() {
 >
   Ingresar
 </a>
+
 >
     </div>
   );
