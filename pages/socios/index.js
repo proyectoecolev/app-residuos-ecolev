@@ -8,7 +8,11 @@ export default function Socios() {
     direccion: "",
     telefono: "",
     estado: "activo", // activo | pausado
-    notas: "",
+      pausa_desde: "", // YYYY-MM-DD
+  pausa_hasta: "", // YYYY-MM-DD
+  pausa_motivo: "",
+  notas: "",
+
   });
 
   // Cargar desde localStorage
@@ -46,12 +50,26 @@ export default function Socios() {
       direccion: form.direccion.trim(),
       telefono: form.telefono.trim(),
       estado: form.estado,
+        pausa_desde: form.pausa_desde,
+  pausa_hasta: form.pausa_hasta,
+  pausa_motivo: form.pausa_motivo.trim(),
+
       notas: form.notas.trim(),
       creado: new Date().toISOString(),
     };
 
     setSocios((prev) => [nuevo, ...prev]);
-    setForm({ nombre: "", direccion: "", telefono: "", estado: "activo", notas: "" });
+    setForm({
+  nombre: "",
+  direccion: "",
+  telefono: "",
+  estado: "activo",
+  pausa_desde: "",
+  pausa_hasta: "",
+  pausa_motivo: "",
+  notas: "",
+});
+
   }
 
   function eliminarSocio(id) {
@@ -99,6 +117,33 @@ export default function Socios() {
             <option value="activo">Activo</option>
             <option value="pausado">Pausado</option>
           </select>
+{form.estado === "pausado" && (
+  <>
+    <label style={label}>Pausa desde</label>
+    <input
+      type="date"
+      value={form.pausa_desde}
+      onChange={(e) => onChange("pausa_desde", e.target.value)}
+      style={input}
+    />
+
+    <label style={label}>Pausa hasta</label>
+    <input
+      type="date"
+      value={form.pausa_hasta}
+      onChange={(e) => onChange("pausa_hasta", e.target.value)}
+      style={input}
+    />
+
+    <label style={label}>Motivo de la pausa</label>
+    <input
+      value={form.pausa_motivo}
+      onChange={(e) => onChange("pausa_motivo", e.target.value)}
+      placeholder="Ej: vacaciones / sin balde / se mudó"
+      style={input}
+    />
+  </>
+)}
 
           <label style={label}>Notas</label>
           <textarea
