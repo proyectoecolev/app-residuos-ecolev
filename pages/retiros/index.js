@@ -130,43 +130,6 @@ export default function Retiros({ resumen, recorrido, error }) {
   }}
 >
   ✔ Retirado
-</button>
-              {item.observacion ? (
-                <p style={{ marginTop: "12px", color: "#444" }}>
-                  <strong>Observación:</strong> {item.observacion}
-                </p>
-              ) : null}
-<button
-  style={{
-    marginTop: "12px",
-    padding: "10px 14px",
-    background: "#16a34a",
-    color: "white",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
-    fontWeight: "bold",
-  }}
-  onClick={async () => {
-    const resp = await fetch("/api/marcar-retirado", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        socio_id: item.socio_id,
-        fecha: new Date().toISOString().slice(0, 10),
-      }),
-    });
-
-    if (resp.ok) {
-      alert("Marcado como retirado");
-      location.reload();
-    } else {
-      const txt = await resp.text();
-      alert("Error: " + txt);
-    }
-  }}
->
-  ✔ Retirado
 </button>            </div>
           ))}
         </div>
