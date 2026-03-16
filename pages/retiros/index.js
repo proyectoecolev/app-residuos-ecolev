@@ -175,7 +175,7 @@ export async function getServerSideProps() {
 
     const [resumenRes, recorridoRes] = await Promise.all([
       fetch(`${supabaseUrl}/rest/v1/v_resumen_hoy?select=*`, { headers }),
-      fetch(`${supabaseUrl}/rest/v1/v_recorrido_hoy?select=*`, { headers }),
+      fetch(`${supabaseUrl}/rest/v1/v_recorrido_hoy?select=*&order=zona_ruta.asc,direccion.asc`, { headers })
     ]);
 
     if (!resumenRes.ok || !recorridoRes.ok) {
