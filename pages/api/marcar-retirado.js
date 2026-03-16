@@ -21,7 +21,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         socio_id,
         fecha,
-        estado: "retirado",
+        estado: "recolectado",
       }),
     });
 
