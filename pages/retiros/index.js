@@ -100,7 +100,37 @@ export default function Retiros({ resumen, recorrido, error }) {
                 <MiniBox label="Baldes 20L" value={item.baldes_20l ?? 0} />
                 <MiniBox label="Kg estimados" value={item.kilos_estimados ?? 0} />
               </div>
+<button
+  style={{
+    marginTop: "10px",
+    padding: "8px 12px",
+    background: "#16a34a",
+    color: "white",
+    border: "none",
+    borderRadius: "6px",
+    cursor: "pointer",
+  }}
+  onClick={async () => {
+    const resp = await fetch("/api/marcar-retirado", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        socio_id: item.socio_id,
+        fecha: new Date().toISOString().slice(0, 10),
+      }),
+    });
 
+    if (resp.ok) {
+      alert("Marcado como retirado");
+      location.reload();
+    } else {
+      const t = await resp.text();
+      alert("Error: " + t);
+    }
+  }}
+>
+  ✔ Retirado
+</button>
               {item.observacion ? (
                 <p style={{ marginTop: "12px", color: "#444" }}>
                   <strong>Observación:</strong> {item.observacion}
