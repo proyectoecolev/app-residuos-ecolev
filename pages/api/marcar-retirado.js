@@ -19,9 +19,15 @@ export default async function handler(req, res) {
       method: "POST",
       headers,
       body: JSON.stringify({
+        id: crypto.randomUUID(),
         socio_id,
         fecha,
         estado: "recolectado",
+        baldes_10l: 0,
+        medios_10l: 0,
+        baldes_20l: 0,
+        kilos: 0,
+        observaciones: null,
       }),
     });
 
