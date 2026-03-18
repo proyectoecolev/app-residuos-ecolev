@@ -41,12 +41,7 @@ export default function Retiros({ resumen, recorrido, error }) {
         <p>No hay retiros para mostrar hoy.</p>
       ) : (
         <div style={{ display: "grid", gap: "12px" }}>
-          {recorrido
-  .sort((a, b) => {
-    if (a.estado_recoleccion === "recolectado") return 1;
-    if (b.estado_recoleccion === "recolectado") return -1;
-    return 0;
-  })
+          {recorrido.map((item) => (
   .map((item) => (
             <div
               key={item.socio_id}
