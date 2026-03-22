@@ -2,33 +2,43 @@ import Link from "next/link";
 
 export default function Dashboard() {
   return (
-    <div style={{ fontFamily: "Arial, sans-serif", padding: "24px" }}>
-      <h1 style={{ marginBottom: "8px" }}>Panel Eco Lev</h1>
-      <p style={{ marginTop: 0, color: "#444" }}>
-        Elegí una sección para empezar (versión 1).
+    <div
+      style={{
+        fontFamily: "Arial, sans-serif",
+        padding: "24px",
+        maxWidth: "800px",
+        margin: "0 auto",
+      }}
+    >
+      <h1 style={{ marginBottom: "8px" }}>Panel Eco Lev 🌱</h1>
+      <p style={{ color: "#555", marginTop: 0 }}>
+        Gestión del servicio de recuperación de residuos orgánicos
       </p>
 
-      <div
-        style={{
-          display: "grid",
-          gap: "12px",
-          maxWidth: "420px",
-          marginTop: "20px",
-        }}
-      >
-        <Link href="/socios" style={cardStyle}>
-          👥 Socios
+      <div style={{ display: "grid", gap: "16px", marginTop: "24px" }}>
+        <Link href="/retiros">
+          <button style={btnVerde}>🚛 Retiros del día</button>
         </Link>
 
-        <Link href="/retiros" style={cardStyle}>
-          🪣 Retiros
+        <Link href="/entregas">
+          <button style={btnVerde}>📦 Entregas</button>
         </Link>
 
-        <Link href="/entregas" style={cardStyle}>
-          🌱 Entregas de compost
+        <Link href="/socios">
+          <button style={btnVerde}>👥 Socios</button>
         </Link>
 
-        <Link href="/" style={{ marginTop: "10px", display: "inline-block" }}>
+        <Link href="/aprobaciones">
+          <button style={btnVerde}>✅ Aprobar solicitudes</button>
+        </Link>
+
+        <Link href="/alta">
+          <button style={btnVerde}>➕ Alta manual</button>
+        </Link>
+      </div>
+
+      <div style={{ marginTop: "40px" }}>
+        <Link href="/">
           ← Volver al inicio
         </Link>
       </div>
@@ -36,12 +46,13 @@ export default function Dashboard() {
   );
 }
 
-const cardStyle = {
-  display: "block",
-  padding: "14px 16px",
-  border: "1px solid #ddd",
-  borderRadius: "10px",
-  textDecoration: "none",
-  color: "#111",
-  background: "#fafafa",
+const btnVerde = {
+  padding: "14px",
+  fontSize: "16px",
+  background: "#16a34a",
+  color: "white",
+  border: "none",
+  borderRadius: "8px",
+  cursor: "pointer",
+  fontWeight: "bold",
 };
