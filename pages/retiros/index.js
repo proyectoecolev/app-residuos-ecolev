@@ -10,7 +10,24 @@ export default function Retiros({ resumen, recorrido, error }) {
       </div>
     );
   }
+async function marcar(item, estado) {
+  const resp = await fetch("/api/marcar-retirado", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      socio_id: item.socio_id,
+      fecha: new Date().toISOString().slice(0, 10),
+      estado,
+    }),
+  });
 
+  if (resp.ok) {
+    alert("Guardado");
+    location.reload();
+  } else {
+    alert("Error");
+  }
+}
   return (
     <div style={{ fontFamily: "Arial, sans-serif", padding: "24px", maxWidth: "900px", margin: "0 auto" }}>
       <h1 style={{ marginBottom: "8px" }}>Retiros de hoy</h1>
@@ -106,7 +123,19 @@ export default function Retiros({ resumen, recorrido, error }) {
                   <strong>Observación:</strong> {item.observacion}
                 </p>
               ) : null}
-            </div>
+<div style={{ marginTop: "12px", display: "flex", gap: "8px", flexWrap: "wrap" }}>
+  <button style={btnOk} onClick={() => marcar(item, "recolectado")}>
+    ✔ Retirado
+  </button>
+
+  <button style={btnNo} onClick={() => marcar(item, "no_tenia")}>
+    ❌ No tenía
+  </button>
+
+  <button style={btnWarn} onClick={() => marcar(item, "olvido_sacar")}>
+    ⚠️ Olvidó sacar
+  </button>
+</div>            </div>
           ))}
         </div>
       )}
@@ -210,3 +239,26 @@ export async function getServerSideProps() {
     };
   }
 }
+const btnOk = {
+  padding: "8px",
+  background: "#16a34a",
+  color: "white",
+  border: "none",
+  borderRadius: "6px",
+};
+
+const btnNo = {
+  padding: "8px",
+  background: "#dc2626",
+  color: "white",
+  border: "none",
+  borderRadius: "6px",
+};
+
+const btnWarn = {
+  padding: "8px",
+  background: "#f59e0b",
+  color: "white",
+  border: "none",
+  borderRadius: "6px",
+};
