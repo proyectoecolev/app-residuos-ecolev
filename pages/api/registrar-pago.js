@@ -12,15 +12,18 @@ export default async function handler(req, res) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      id: crypto.randomUUID(),
       socio_id,
-      fecha: new Date().toISOString().slice(0, 10),
+      periodo: new Date().toISOString().slice(0, 7),
+      fecha_pago: new Date().toISOString().slice(0, 10),
       monto,
       metodo,
     }),
   });
 
   if (!response.ok) {
-    return res.status(400).json({ error: "Error al guardar" });
+    const text = await response.text();
+    return res.status(400).json({ error: text });
   }
 
   return res.status(200).json({ ok: true });
