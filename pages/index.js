@@ -20,13 +20,7 @@ export default function Home() {
       <div style={{ display: "grid", gap: "16px" }}>
         <Link href="/alta">
           <button style={btnVerde}>
-            🌱 Sumarme al servicio
-          </button>
-        </Link>
-
-        <Link href="/dashboard">
-          <button style={btnNegro}>
-            🔐 Ingresar al panel
+            🌱 Completar mis datos
           </button>
         </Link>
       </div>
@@ -42,17 +36,6 @@ const btnVerde = {
   padding: "14px",
   fontSize: "16px",
   background: "#16a34a",
-  color: "white",
-  border: "none",
-  borderRadius: "8px",
-  cursor: "pointer",
-  fontWeight: "bold",
-};
-
-const btnNegro = {
-  padding: "14px",
-  fontSize: "16px",
-  background: "#111",
   color: "white",
   border: "none",
   borderRadius: "8px",
