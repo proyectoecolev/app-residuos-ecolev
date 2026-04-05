@@ -20,39 +20,46 @@ export default function AltaSocio() {
   }
 
   async function handleSubmit(e) {
-    e.preventDefault();
-    setCargando(true);
-    setMensaje("");
+  e.preventDefault();
+  setCargando(true);
+  setMensaje("");
 
+  try {
+    const resp = await fetch("/api/alta-socio", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    });
+
+    const text = await resp.text();
+
+    let data = {};
     try {
-      const resp = await fetch("/api/alta-socio", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
-
-      const data = await resp.json();
-
-      if (resp.ok) {
-        setMensaje("Solicitud enviada correctamente. Eco Lev revisará tus datos.");
-        setForm({
-          nombre: "",
-          direccion: "",
-          telefono: "",
-          zona_ruta: "",
-          notas: "",
-        });
-      } else {
-        setMensaje("Error: " + (data.error || "No se pudo guardar"));
-      }
-    } catch (error) {
-      setMensaje("Error: " + error.message);
-    } finally {
-      setCargando(false);
+      data = JSON.parse(text);
+    } catch {
+      data = { error: text };
     }
+
+    if (resp.ok) {
+      setMensaje("Solicitud enviada correctamente. Eco Lev revisará tus datos.");
+      setForm({
+        nombre: "",
+        direccion: "",
+        telefono: "",
+        zona_ruta: "",
+        notas: "",
+      });
+    } else {
+      setMensaje("Error: " + (data.error || "No se pudo guardar"));
+    }
+  } catch (error) {
+    setMensaje("Error: " + error.message);
+  } finally {
+    setCargando(false);
   }
+}
 
   return (
     <div style={{ fontFamily: "Arial, sans-serif", padding: "24px", maxWidth: "650px", margin: "0 auto" }}>
