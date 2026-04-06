@@ -12,10 +12,6 @@ export default async function handler(req, res) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  if (!supabaseUrl || !supabaseAnonKey) {
-    return res.status(500).json({ error: "Faltan variables de entorno de Supabase" });
-  }
-
   const response = await fetch(`${supabaseUrl}/rest/v1/socios`, {
     method: "POST",
     headers: {
@@ -32,6 +28,7 @@ export default async function handler(req, res) {
         zona_ruta,
         notas: notas || null,
         estado: "pausado",
+        fecha_suscripcion: new Date().toISOString().slice(0, 10),
       },
     ]),
   });
